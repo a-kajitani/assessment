@@ -8,14 +8,28 @@ assesmentButton.onclick = function() {
   const userName = userNameInput.value;
   if(userName.length !== 0){
     resultDivision.innerText =''; //作成前にタグを空にする
-    console.log(userName);
-    const header = document.createElement('h3');//h3タグを作る
-    header.innerText = '診断結果';//中身の文章の設定
-    resultDivision.appendChild(header);//divの子要素として追加
-    const paragraph = document.createElement('p');//pタグを作る
-    const result = assesment(userName);//診断結果を取得
+    
+    // headerDivision の作成
+    const headerDivision = document.createElement('div');
+    headerDivision.setAttribute('class', 'card-header text-bg-primary');
+    headerDivision.innerText = '診断結果';
+
+    // bodyDivision の作成
+    const bodyDivision = document.createElement('div');
+    bodyDivision.setAttribute('class', 'card-body');
+
+    const paragraph = document.createElement('p');
+    paragraph.setAttribute('class', 'card-text');
+    const result = assesment(userName);
     paragraph.innerText = result;
-    resultDivision.appendChild(paragraph);
+    bodyDivision.appendChild(paragraph);
+
+    // resultDivision に Bootstrap のスタイルを適用する
+    resultDivision.setAttribute('class', 'card');
+
+    // headerDivision と bodyDivision を resultDivision に差し込む
+    resultDivision.appendChild(headerDivision);
+    resultDivision.appendChild(bodyDivision);
 
     //ツイートエリアの作成
     tweetDivision.innerText ='';
